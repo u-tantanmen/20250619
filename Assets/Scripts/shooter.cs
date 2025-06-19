@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class shooter : MonoBehaviour
 {
     public GameObject candy;
+    public GameObject gutitubo;
 
     void Start()
     {
@@ -21,7 +23,7 @@ public class shooter : MonoBehaviour
     }
     public void CandyPop()
     {
-         GameObject candyPrefab = Instantiate(candy,transform);
+        GameObject candyPrefab = Instantiate(candy, transform);
          candyPrefab.GetComponent<Rigidbody>().AddForce(transform.forward * 1000);
     }
 }
