@@ -208,8 +208,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 479811150}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalRotation: {x: -0.013783842, y: -0.8574571, z: 0.02299143, w: -0.51385665}
+  m_LocalPosition: {x: -22.014656, y: 4.6008306, z: 27.88137}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -377,6 +377,51 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+--- !u!1 &1837690688 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7205719038485501694, guid: a780da896ca904035b33f90d86b0ba4d,
+    type: 3}
+  m_PrefabInstance: {fileID: 2118461875}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1837690691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1837690688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50bd4da53ae2821449941a7c2651ac34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0.05
+--- !u!143 &1837690692
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1837690688}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0.9, z: 0}
 --- !u!1001 &2118461875
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -443,7 +488,15 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7205719038485501694, guid: a780da896ca904035b33f90d86b0ba4d,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1837690691}
+    - targetCorrespondingSourceObject: {fileID: 7205719038485501694, guid: a780da896ca904035b33f90d86b0ba4d,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1837690692}
   m_SourcePrefab: {fileID: 100100000, guid: a780da896ca904035b33f90d86b0ba4d, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
