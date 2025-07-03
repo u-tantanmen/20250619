@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
+
 
 public class shooter : MonoBehaviour
 {
-    public GameObject candy;
+    public GameObject pikutohausu;
     public GameObject gutitubo;
 
     void Start()
@@ -23,7 +23,16 @@ public class shooter : MonoBehaviour
     }
     public void CandyPop()
     {
-        GameObject candyPrefab = Instantiate(candy, transform);
+        GameObject candyPrefab = null;
+        int rnd = Random.Range(1, 3);
+        if(rnd == 1)
+        {
+            candyPrefab = Instantiate(gutitubo,transform);
+        }
+        else if(rnd == 2)
+        {
+            candyPrefab = Instantiate(pikutohausu,transform);
+        }
          candyPrefab.GetComponent<Rigidbody>().AddForce(transform.forward * 1000);
     }
 }

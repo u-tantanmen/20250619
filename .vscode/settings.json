@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "CandyDozer.sln"
+    "dotnet.defaultSolution": "20250619.sln"
 }
