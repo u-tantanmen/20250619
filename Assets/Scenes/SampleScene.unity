@@ -2412,7 +2412,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pusher: {fileID: 1748825384}
   defaultPosition: {x: 0, y: 0, z: 0}
-  pushPower: 6
+  pushPower: 4
 --- !u!1 &1884077732
 GameObject:
   m_ObjectHideFlags: 0
