@@ -36,6 +36,7 @@ public class StageGenerator : MonoBehaviour
                 stageObject.transform.position = new Vector3(0,0,i * 30f);
                 //生成したステージチップを管理リストに追加
                 generateStageList.Add(stageObject);
+                currentChipIndex++;
             }
         }
     }
