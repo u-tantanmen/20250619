@@ -17,9 +17,17 @@ public class NejikoController : MonoBehaviour
 
     //ジャンプの高さを決める変数
     public float jumpPower = 0;
-
     //重力の強さを決める変数
     public float gravityPower = 0;
+    
+    //ラインの数の最大値
+    int MaxLine = 2;
+    //ラインの数の最小値
+    int MinLine = -2;
+    //ライン間の距離
+    float LineWidth = 1.0f;
+    //移動先のライン
+    int targetLine = 0;
 
     void Start()
     {
@@ -38,7 +46,34 @@ public class NejikoController : MonoBehaviour
                 moveDirection.y = jumpPower;
              }
         }
+        
+        //1フレーム毎に前進する距離の更新
+        float movePowerZ = moveDirection.z + (speed * Time.deltaTime);
+        //更新した距離と現在地の差分距離の計算
+        moveDirection.z = Mathf.Clamp(movePowerZ, 0f, speed);
 
+        //X方向は目標のポジションまでの差分で速度を出す
+        float ratioX = (targetLine * LineWidth - transform.position.x) / LineWidth;
+        moveDirection.x = ratioX * speed;
+
+        //右のレーン切り替え
+        if (Input.GetKeyDown("right") || Input.GetKeyDown("d"))
+        {
+            if (controller.isGrounded && targetLine < MaxLine)
+            {
+                targetLine = targetLine + 1;
+            }
+        }
+        //左のレーン切り替え
+        if (Input.GetKeyDown("left") || Input.GetKeyDown("a"))
+        {
+            if (controller.isGrounded && targetLine > MinLine)
+            {
+                targetLine = targetLine - 1;
+            }
+        }
+
+        /*
         if (Input.GetAxis("Vertical") > 0.0f)   
         {
             //ねじ子が前進する処理
@@ -48,9 +83,10 @@ public class NejikoController : MonoBehaviour
         {
             moveDirection.z = 0.0f;
         }
+        */
 
         //Horizontal(左右入力)ねじこを回転させる
-        transform.Rotate(0, Input.GetAxis("Horizontal") * 3f, 0);
+        //transform.Rotate(0, Input.GetAxis("Horizontal") * 3f, 0);
 
         //キャラクターが重力で落下する処理
         moveDirection.y = moveDirection.y - gravityPower * Time.deltaTime;
