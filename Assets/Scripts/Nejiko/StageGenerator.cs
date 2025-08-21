@@ -25,19 +25,29 @@ public class StageGenerator : MonoBehaviour
     {
         //キャラクターの現在位置から現在のステージチップのインデックスを計算
         int characterPositionIndex = (int)(character.position.z / 30f);
+        Debug.Log(characterPositionIndex);
+
+        //キャラクターが進んだらステージチップを追加で生成する
+        for (int i = preInstance + characterPositionIndex; i >= preInstance; i++)
+        {
+            //最初に作ったステージ数＋自分の通過したステージ数だけステージ数を生成する
+            if (generateStageList.Count > preInstance + characterPositionIndex)
+            {
+                return;
+            }
+            //乱数を生成する
+            int randomValue = Random.Range(0, stageChip.Length);
+
+            //ここで作るステージをランダムに変更する
+            GameObject stageObject = Instantiate(stageChip[randomValue]);
+
+            stageObject.transform.position = new Vector3(0, 0, currentChipIndex * 30f);
+            //生成したステージチップを管理リストに追加
+            generateStageList.Add(stageObject);
+            currentChipIndex++;
+        }
 
         //次のステージチップに入ったらステージの最新処理を行う
-        if (characterPositionIndex + preInstance > currentChipIndex)
-        {
-            //指定のステージチップを作成
-            for (int i = currentChipIndex + 1; i <= preInstance; i++)
-            {
-                GameObject stageObject = Instantiate (stageChip[0]);
-                stageObject.transform.position = new Vector3(0,0,i * 30f);
-                //生成したステージチップを管理リストに追加
-                generateStageList.Add(stageObject);
-                currentChipIndex++;
-            }
-        }
+
     }
 }

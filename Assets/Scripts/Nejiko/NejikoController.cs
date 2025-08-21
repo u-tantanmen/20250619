@@ -28,6 +28,19 @@ public class NejikoController : MonoBehaviour
     float LineWidth = 1.0f;
     //移動先のライン
     int targetLine = 0;
+    
+    //敵キャラクターと当たった時に停止する時間
+    float StunTime = 0.5f;
+    //キャラクターが止まってから動き出すまでの復帰時間
+    float recoverTime = 0.0f;
+    //プレイヤーのHP
+    public int playerHitPoint = 3;
+
+    //キャラクターがスタン中か判断するクラス
+    bool IsStun()
+    {
+        return recoverTime > 0.0f;
+    }
 
     void Start()
     {
@@ -46,11 +59,23 @@ public class NejikoController : MonoBehaviour
                 moveDirection.y = jumpPower;
              }
         }
-        
-        //1フレーム毎に前進する距離の更新
-        float movePowerZ = moveDirection.z + (speed * Time.deltaTime);
-        //更新した距離と現在地の差分距離の計算
-        moveDirection.z = Mathf.Clamp(movePowerZ, 0f, speed);
+
+        //スタン中の場合は移動量を０に固定する
+        if(IsStun() == true)
+        {
+            moveDirection.x = 0f;
+            moveDirection.z = 0f;
+            recoverTime -= Time.deltaTime;
+        }
+        //敵に触れてスタン中なら前進しない
+        if(IsStun() == false)
+        {
+            //1フレーム毎に前進する距離の更新
+            float movePowerZ = moveDirection.z + (speed * Time.deltaTime);
+            //更新した距離と現在地の差分距離の計算
+            moveDirection.z = Mathf.Clamp(movePowerZ, 0f, speed);    
+        }
+
 
         //X方向は目標のポジションまでの差分で速度を出す
         float ratioX = (targetLine * LineWidth - transform.position.x) / LineWidth;
@@ -99,5 +124,18 @@ public class NejikoController : MonoBehaviour
 
         //ねじこのアニメーションを最新する
         animator.SetBool("run", moveDirection.z > 0f);
+    }
+    //敵キャラクターに当たった場合の処理を追加
+    void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if(hit.gameObject.tag == "Robo")
+        {
+            Debug.Log("敵にぶつかった！");
+            recoverTime = StunTime;
+            playerHitPoint--;
+            //ねじこのアニメーションを再生
+            animator.SetTrigger("damage");
+            Destroy(hit.gameObject);
+        }
     }
 }

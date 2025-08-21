@@ -168,7 +168,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   character: {fileID: 1837690694}
   stageChip:
-  - {fileID: 9098850952805901752, guid: bc2e0b1d429f0d9409ef37fac428d308, type: 3}
+  - {fileID: 114390, guid: 52ac30a9f6a2ed143abaca4882daa9bc, type: 3}
+  - {fileID: 114390, guid: f7b2374179d922344ada758fb9d1c402, type: 3}
   generateStageList: []
   preInstance: 5
   currentChipIndex: 0
@@ -463,6 +464,7 @@ MonoBehaviour:
   speed: 4
   jumpPower: 8
   gravityPower: 20
+  playerHitPoint: 3
 --- !u!143 &1837690692
 CharacterController:
   m_ObjectHideFlags: 0
